@@ -29,7 +29,7 @@ This repository has some additional tools already setup for you:
 To build all apps and packages, run the following command:
 
 ```sh
-npm run build
+pnpm run build
 ```
 
 ### Develop
@@ -37,7 +37,7 @@ npm run build
 To develop all apps and packages, run the following command:
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
 ### Remote Caching
@@ -52,31 +52,54 @@ npx turbo login
 
 ### Supabase
 
-Supabase is a Firebase alternative. It provides a set of tools for backend development including a Postgres database, authentication and storage. You can learn more about Supabase in the [`supabase/README.md`](supabase/README.md).
+Supabase is a Firebase alternative. It provides a set of tools for backend development including a Postgres database, authentication, and storage. You can learn more about Supabase in the [`supabase/README.md`](supabase/README.md).
+
+To run Supabase locally, you need to have Docker installed on your machine. Once Docker is installed, you can start Supabase with the following command:
+
+```sh
+cd supabase
+pnpm run start
+```
 
 ### Expo and Expo Web
 
-Expo is a framework for building native apps using React. `native` is an Expo app that can be run on Android, iOS, and Web. You can start the app by running `npm run android`, `npm run ios`, or `npm run web` in the `apps/native` directory.
+Expo is a framework for building native apps using React. `native` is an Expo app that can be run on Android, iOS, and Web. You can start the app by running `pnpm run android`, `pnpm run ios`, or `pnpm run web` in the `apps/native` directory.
+
+### GitHub Actions
+
+This repository is set up with GitHub Actions for continuous integration (CI) and deployment (CD). The workflows for these actions can be found in the .github/workflows directory.
+
+To set up these actions for your own use, you'll need to add your own secrets to your GitHub repository. These secrets include things like your `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and any other environment variables you're using in your application.
+
+To add these secrets:
+
+Go to your repository on GitHub.
+Click on "Settings".
+Click on "Secrets".
+Click on "New repository secret".
+Add the name of the secret in the "Name" field and its corresponding value in the "Value" field.
+Click on "Add secret".
+Once you've added your secrets, the GitHub Actions workflows should be able to use these values and run your CI/CD pipelines successfully.
 
 ## Getting Started
 
 First, install the dependencies:
 
 ```sh
-npm install
+pnpm install
 ```
 
 Then, you can start the development server for the web app:
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
 Or start the Expo app:
 
 ```sh
 cd apps/native
-npm run dev
+pnpm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result of the web app. The Expo app can be opened using the Expo Go app on your phone or using an emulator.
