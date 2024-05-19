@@ -1,0 +1,89 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "@PROJECT_NAME/supabase#start": {
+      "outputs": [],
+      "cache": false
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "generate": {
+      "dependsOn": ["^generate"],
+      "outputs": []
+    },
+    "@PROJECT_NAME/types#generate": {
+      "dependsOn": ["@PROJECT_NAME/supabase#start", "^generate"],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "e2e": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "@PROJECT_NAME/supabase#test": {
+      "dependsOn": ["@PROJECT_NAME/supabase#start", "^build"],
+      "outputs": []
+    },
+    "clean": {
+      "outputs": [],
+      "cache": false
+    },
+    "start": {
+      "outputs": []
+    },
+    "lint": {
+      "dependsOn": ["format:check"],
+      "outputs": []
+    },
+    "@PROJECT_NAME/supabase#lint": {
+      "dependsOn": ["@PROJECT_NAME/supabase#start", "format:check"],
+      "outputs": []
+    },
+    "lint:report": {
+      "dependsOn": ["format:check"],
+      "outputs": ["lint-results/**"]
+    },
+    "@PROJECT_NAME/supabase#lint:report": {
+      "dependsOn": ["@PROJECT_NAME/supabase#start", "format:check"],
+      "outputs": []
+    },
+    "lint:fix": {
+      "dependsOn": ["format:write"],
+      "outputs": []
+    },
+    "format:write": {
+      "outputs": []
+    },
+    "format:check": {
+      "outputs": []
+    },
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "preview": {
+      "outputs": []
+    },
+    "cleanup-preview": {
+      "outputs": []
+    },
+    "deploy": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false
+    }
+  },
+  "globalDependencies": [
+    ".env",
+    ".env.local",
+    ".env.development",
+    ".env.production"
+  ],
+  "globalEnv": ["NODE_ENV", "PUBLIC_SUPABASE_URL", "PUBLIC_SUPABASE_ANON_KEY"]
+}
